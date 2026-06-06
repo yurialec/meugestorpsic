@@ -1,0 +1,33 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@popperjs/core": "^2.11.8",
+        "@vitejs/plugin-vue": "^4.5.0",
+        "axios": "^1.1.2",
+        "bootstrap": "^5.3.5",
+        "laravel-vite-plugin": "^0.7.2",
+        "sass": "^1.56.1",
+        "vite": "^4.0.0",
+        "vue": "^3.2.37"
+    },
+    "dependencies": {
+        "admin-lte": "^4.0.0-beta3",
+        "bootstrap-vue": "^2.23.1",
+        "chart.js": "^4.4.3",
+        "jquery": "^3.7.1",
+        "moment": "^2.30.1",
+        "qrcode": "^1.5.4",
+        "v-mask": "^2.3.0",
+        "vue-chartjs": "^5.3.1",
+        "vue-multiselect": "^3.0.0",
+        "vue-sweetalert2": "^5.0.11",
+        "vue-the-mask": "^0.11.1",
+        "vue-upload-multiple-image": "^1.1.6",
+        "vuetify": "^3.7.14",
+        "vuex": "^4.0.2"
+    }
+}
