@@ -20,6 +20,7 @@ class PaymentMethodSeeder extends Seeder
             "health_insurance" => 'Convênio',
             "tank_transfer" => 'Transferência',
             "free" => 'Livre',
+            "boleto" => 'Boleto',
             "pending" => 'Pendente',
         ];
 

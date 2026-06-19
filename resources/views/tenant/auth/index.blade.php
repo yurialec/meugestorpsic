@@ -18,17 +18,14 @@
                 <div class="card-body p-4 p-md-5 bg-light">
                     <!-- Logo (opcional, mas reforça identidade) -->
                     <div class="text-center mb-4">
-                        @php $logo = App\Models\Site\SiteLogo::first(); @endphp
-                        @if ($logo?->image)
-                            <img src="{{ asset('storage/' . $logo->image) }}" 
+                        <img src="{{ asset('images/logo.png') }}" 
                                  alt="{{ config('app.name') }}" 
-                                 height="40" 
+                                 height="40"
+                                 width="40"
                                  class="mb-3">
-                        @else
-                            <h2 class="fw-bold" style="color: #1e40af;">{{ config('app.name', 'Meu Gestor Saúde') }}</h2>
-                        @endif
-                        <h3 class="fw-semibold">Acesse sua conta</h3>
-                        <p class="text-muted small">Psicólogos e equipes clínicas</p>
+                        <img src="{{asset('images/logo_wide.png')}}" height="90" width="250" alt="">
+                        {{-- <h3 class="fw-light">Acesse sua conta</h3> --}}
+                        {{-- <p class="text-muted small">Psicólogos e equipes clínicas</p> --}}
                     </div>
 
                     <!-- Mensagem de erro melhorada -->
@@ -131,7 +128,7 @@
                         <div class="text-center mt-4 pt-3 border-top">
                             <p class="text-muted small mb-0">
                                 Primeiro acesso? 
-                                <a href="{{ route('form-faca-parte') }}" class="text-primary text-decoration-none">
+                                <a href="{{ route('form.cadastro') }}" class="text-primary text-decoration-none">
                                     <strong>Cadastre-se gratuitamente</strong>
                                 </a>
                             </p>

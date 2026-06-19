@@ -4,17 +4,14 @@
         <div class="container">
             <div class="row align-items-center justify-content-between g-5">
                 <div class="col-lg-6 order-2 order-lg-1">
-                    @if (isset($about->title))
                         <h1 class="display-5  fw-lighter text-info mb-3 lh-sm">
-                            {{ $about->title }}
+                            Sobre nós
                         </h1>
-                    @endif
 
-                    @if (isset($about->description))
                         <p class="lead text-muted mb-4">
-                            {{ $about->description }}
+                            O Meu Gestor Psic nasceu para iniciantes e foi pensando em quem dedica a vida a cuidar de pessoas. Sabemos que profissionais da área da psicólogia enfrentam rotinas intensas, burocracias e pouco tempo para o que realmente importa: o atendimento humano. Por isso decidimos criar algo simples, objetivo e uma consultoria incluso para se adequar ao mercado. Por isso, criamos um sistema simples, objetivo e acessível, que ajuda a organizar a rotina clínica sem complicações. Evoluímos constantemente com atualizações necessárias, sempre ouvindo quem está na prática todos os dias. Nosso compromisso é facilitar a gestão, para que você possa focar no cuidado.
                         </p>
-                    @endif
+
                     <div class="row g-3 mb-4">
                         <div class="col-md-6">
                             <div class="d-flex align-items-start">
@@ -66,30 +63,23 @@
                         </div>
                     </div>
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="{{ route('faca-parte') }}" class="btn btn-primary px-4 py-2">
+                        <a href="{{ route('form.cadastro') }}" class="btn btn-primary px-4 py-2">
                             <i class="bi bi-rocket-takeoff me-1"></i> Testar grátis por 10 dias
                         </a>
-                        <a href="{{ route('tenant.login.form') }}" class="btn btn-outline-secondary px-4 py-2">
+                        <a href="#" class="btn btn-outline-secondary px-4 py-2">
                             Já sou cliente
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1 order-1 order-lg-2 text-center">
-                    @if (isset($about->image))
                         <div class="position-relative d-inline-block">
-                            <img src="{{ asset('storage/' . $about->image) }}" alt="Plataforma {{ config('app.name') }}"
+                            <img src="{{ asset('images/about.png') }}" alt="IMAGEM"
                                 class="img-fluid rounded-4 shadow-lg" style="max-width: 320px;" loading="lazy">
                             <div
                                 class="position-absolute top-0 start-50 translate-middle badge bg-success text-dark px-3 py-2 fw-semibold">
                                 <i class="bi bi-shield-check me-1"></i> LGPD
                             </div>
                         </div>
-                    @else
-                        <div class="bg-light border rounded-4 d-flex align-items-center justify-content-center"
-                            style="width: 320px; height: 280px; margin: 0 auto;">
-                            <span class="text-muted">Imagem da plataforma</span>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>

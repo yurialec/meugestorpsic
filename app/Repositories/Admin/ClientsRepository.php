@@ -4,7 +4,6 @@ namespace App\Repositories\Admin;
 
 use App\Interfaces\Admin\ClientsRepositoryInterface;
 use App\Models\Admin\Clients;
-use App\Models\Admin\CrmInteraction;
 use App\Models\Admin\Subscription;
 use App\Models\Tenants\Tenant;
 use App\Models\Tenants\ClientConfig;
@@ -16,20 +15,17 @@ class ClientsRepository implements ClientsRepositoryInterface
 {
     protected $tenant;
     protected $client;
-    protected $interaction;
     protected $subscription;
     protected $config;
 
     public function __construct(
         Tenant $tenant,
         Clients $client,
-        CrmInteraction $interaction,
         Subscription $subscription,
         ClientConfig $config
     ) {
         $this->tenant = $tenant;
         $this->client = $client;
-        $this->interaction = $interaction;
         $this->subscription = $subscription;
         $this->config = $config;
     }
@@ -44,7 +40,7 @@ class ClientsRepository implements ClientsRepositoryInterface
         }
     }
 
-    public function create($clientData, $tenantData, $subcriptionData, $interactionData)
+    public function create($clientData, $tenantData, $subcriptionData)
     {
         $client = $this->client
             ->where('email', $clientData['email'])
@@ -76,11 +72,6 @@ class ClientsRepository implements ClientsRepositoryInterface
             $config = $this->config;
             $config->client_id = $client->id;
             $config->save();
-
-            $interaction = $this->interaction->create([
-                'status_id' => $interactionData['status_id'],
-                'client_id' => $client->id,
-            ]);
 
             $subscription = $this->subscription->create([
                 'tenant_id'            => $tenant->id,

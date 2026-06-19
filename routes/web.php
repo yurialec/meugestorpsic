@@ -60,8 +60,8 @@ Auth::routes();
 Route::get('/', [SiteController::class, 'index'])->name('index.site');
 Route::get('/sobre', [SiteController::class, 'about'])->name('about');
 Route::get('/contato', [SiteController::class, 'contact'])->name('contact');
-Route::get('/faca-parte', [SiteController::class, 'formFacaParte'])->name('form-faca-parte');
-Route::post('/faca-parte', [SiteController::class, 'facaParte'])->name('faca-parte');
+Route::get('/cadastre-se', [SiteController::class, 'formFacaCadastro'])->name('form.cadastro');
+Route::post('/cadastre-se', [SiteController::class, 'cadastro'])->name('cadastro');
 
 Route::get('/area-restrita', [LoginController::class, 'areaRestrita'])->name('area.restrita');
 Route::post('/area-restrita-login', [LoginController::class, 'login'])->name('area.restrita.login');
@@ -83,131 +83,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('admin/')->group(function () {
         //dont need acl
-        Route::get('home', [HomeController::class, 'index'])->name('home');
-        Route::get('sidebar', [MenuController::class, 'sidebar'])->name('sidebar');
-        Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
-        Route::get('/profile-view', [UserController::class, 'profileView'])->name('profile.view');
-        Route::get('/profile', [UserController::class, 'profile'])->name('profile');
         Route::get('/audit-logs', [AuditLogController::class, 'index'])->name('audit.logs.index');
         Route::get('/audit-logs/export-csv', [AuditLogController::class, 'exportCsv'])->name('audit.logs.exportCsv');
 
-        Route::middleware(['acl:manter-site'])->group(function () {
-            Route::prefix('site')->group(function () {
-                Route::get('/', [App\Http\Controllers\Admin\SiteController::class, 'index'])->name('site.index');
-                Route::get('/list', [App\Http\Controllers\Admin\SiteController::class, 'list'])->name('site.list');
-                Route::get('/edit', [App\Http\Controllers\Admin\SiteController::class, 'edit'])->name('site.edit');
-                Route::post('/save', [App\Http\Controllers\Admin\SiteController::class, 'save'])->name('site.save');
-            });
-        });
-
-        Route::middleware(['acl:manter-usuarios'])->group(function () {
-            Route::prefix('users')->group(function () {
-                Route::get('/', [UserController::class, 'index'])->name('users.index');
-                Route::get('/list', [UserController::class, 'list'])->name('users.list');
-                Route::get('/create', [UserController::class, 'create'])->name('users.create');
-                Route::post('/store', [UserController::class, 'store'])->name('users.store');
-                Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
-                Route::get('/find/{id}', [UserController::class, 'find'])->name('users.find');
-                Route::put('/update/{id}', [UserController::class, 'update'])->name('users.update');
-                Route::delete('/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
-            });
-        });
-
-        Route::middleware(['acl:manter-perfis'])->group(callback: function () {
-            Route::prefix('roles')->group(function () {
-                Route::get('/', [RoleController::class, 'index'])->name('roles.index');
-                Route::get('/list', [RoleController::class, 'list'])->name('roles.list');
-                Route::get('/create', [RoleController::class, 'create'])->name('roles.create');
-                Route::post('/store', [RoleController::class, 'store'])->name('roles.store');
-                Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit');
-                Route::get('/find/{id}', [RoleController::class, 'find'])->name('roles.find');
-                Route::post('/update/{id}', [RoleController::class, 'update'])->name('roles.update');
-                Route::delete('/delete/{id}', [RoleController::class, 'delete'])->name('roles.delete');
-                Route::get('/list-permissions', [RoleController::class, 'listPermissions'])->name('roles.list.permissions');
-            });
-        });
-
-        Route::middleware(['acl:manter-permissoes'])->group(callback: function () {
-            Route::prefix('permissions')->group(function () {
-                Route::get('/', [PermissionController::class, 'index'])->name('permissions.index');
-                Route::get('/list', [PermissionController::class, 'list'])->name('permissions.list');
-                Route::get('/create', [PermissionController::class, 'create'])->name('permissions.create');
-                Route::post('/store', [PermissionController::class, 'store'])->name('permissions.store');
-                Route::get('/edit/{id}', [PermissionController::class, 'edit'])->name('permissions.edit');
-                Route::post('/update/{id}', [PermissionController::class, 'update'])->name('permissions.update');
-                Route::delete('/delete/{id}', [PermissionController::class, 'delete'])->name('permissions.delete');
-            });
-        });
-
-        Route::middleware(['acl:manter-menus'])->group(callback: function () {
-            Route::prefix('menu')->group(function () {
-                Route::get('/', [MenuController::class, 'index'])->name('menu.index');
-                Route::get('/list', [MenuController::class, 'list'])->name('menu.list');
-                Route::get('/create', [MenuController::class, 'create'])->name('menu.create');
-                Route::post('/store', [MenuController::class, 'store'])->name('menu.store');
-                Route::get('/edit/{id}', [MenuController::class, 'edit'])->name('menu.edit');
-                Route::get('/find/{id}', [MenuController::class, 'find'])->name('menu.find');
-                Route::post('/update/{id}', [MenuController::class, 'update'])->name('menu.update');
-                Route::delete('/delete/{id}', [MenuController::class, 'delete'])->name('menu.delete');
-                Route::post('/change-order-menu/{id}', [MenuController::class, 'changeOrderMenu'])->name('menu.changeOrderMenu');
-            });
-        });
-
-        Route::prefix('crm/')->group(function () {
-
-            Route::middleware(['acl:manter-clientes'])->group(callback: function () {
-                Route::prefix('clients')->group(function () {
-                    Route::get('/', [ClientsController::class, 'index'])->name('clients.index');
-                    Route::get('/list', [ClientsController::class, 'list'])->name('clients.list');
-                    Route::get('/create', [ClientsController::class, 'create'])->name('clients.create');
-                    Route::post('/store', [ClientsController::class, 'store'])->name('clients.store');
-                    Route::get('/edit/{id}', [ClientsController::class, 'edit'])->name('clients.edit');
-                    Route::get('/find/{id}', [ClientsController::class, 'find'])->name('clients.find');
-                    Route::put('/update/{id}', [ClientsController::class, 'update'])->name('clients.update');
-                    Route::delete('/delete/{id}', [ClientsController::class, 'delete'])->name('clients.delete');
-                    Route::get('/download-importation-model', [ClientsController::class, 'downloadImportationModel'])->name('clients.downloadImportationModel');
-                });
-            });
-
-            Route::middleware(['acl:manter-crm-status'])->group(callback: function () {
-                Route::prefix('status')->group(function () {
-                    Route::get('/', [CrmStatusController::class, 'index'])->name('status.index');
-                    Route::get('/list', [CrmStatusController::class, 'list'])->name('status.list');
-                    Route::get('/create', [CrmStatusController::class, 'create'])->name('status.create');
-                    Route::post('/store', [CrmStatusController::class, 'store'])->name('status.store');
-                    Route::get('/edit/{id}', [CrmStatusController::class, 'edit'])->name('status.edit');
-                    Route::get('/find/{id}', [CrmStatusController::class, 'find'])->name('status.find');
-                    Route::put('/update/{id}', [CrmStatusController::class, 'update'])->name('status.update');
-                    Route::delete('/delete/{id}', [CrmStatusController::class, 'delete'])->name('status.delete');
-                });
-
-                Route::prefix('interactions')->group(function () {
-                    Route::get('/', [CrmInteractionController::class, 'index'])->name('interactions.index');
-                    Route::get('/list', [CrmInteractionController::class, 'list'])->name('interactions.list');
-                    Route::post('/download', [CrmInteractionController::class, 'downloadFile'])->name('interaction.download');
-                    Route::get('/create', [CrmInteractionController::class, 'create'])->name('interactions.create');
-                    Route::post('/store', [CrmInteractionController::class, 'store'])->name('interactions.store');
-                    Route::get('/edit/{id}', [CrmInteractionController::class, 'edit'])->name('interactions.edit');
-                    Route::get('/find/{id}', [CrmInteractionController::class, 'find'])->name('interactions.find');
-                    Route::put('/update/{id}', [CrmInteractionController::class, 'update'])->name('interactions.update');
-                    Route::delete('/delete/{id}', [CrmInteractionController::class, 'delete'])->name('interactions.delete');
-                });
-            });
-        });
-
         Route::prefix('financial/')->group(function () {
-            Route::middleware(['acl:manter-planos'])->group(callback: function () {
-                Route::prefix('plan')->group(function () {
-                    Route::get('/', [PlanController::class, 'index'])->name('plan.index');
-                    Route::get('/list', [PlanController::class, 'list'])->name('plan.list');
-                    Route::get('/create', [PlanController::class, 'create'])->name('plan.create');
-                    Route::post('/store', [PlanController::class, 'store'])->name('plan.store');
-                    Route::get('/edit/{id}', [PlanController::class, 'edit'])->name('plan.edit');
-                    Route::get('/get-plan-by-id/{id}', [PlanController::class, 'getPlanById'])->name('clients.getplanbyid');
-                    Route::put('/update/{id}', [PlanController::class, 'update'])->name('plan.update');
-                    Route::delete('/delete/{id}', [PlanController::class, 'delete'])->name('plan.delete');
-                });
-            });
 
             Route::middleware(['acl:manter-inscricoes'])->group(callback: function () {
                 Route::prefix('subscriptions')->group(function () {
@@ -240,84 +119,6 @@ Route::get('/cep/{cep}', function ($cep) {
     $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
     return $response->json();
 });
-
-Route::get('/debug/pagseguro-credentials', function () {
-    $debugToken = (string) config('pagseguro.webhook_token');
-    $receivedToken = (string) request()->query('token', '');
-
-    abort_unless(
-        app()->environment('local') || ($debugToken !== '' && hash_equals($debugToken, $receivedToken)),
-        403
-    );
-
-    $baseUrl = rtrim((string) config('pagseguro.base_url'), '/');
-    $configuredToken = (string) config('pagseguro.token');
-    $trimmedToken = trim($configuredToken, " \t\n\r\0\x0B\"'");
-    $hadBearerPrefix = stripos($trimmedToken, 'Bearer ') === 0;
-    $normalizedToken = $hadBearerPrefix ? trim(substr($trimmedToken, 7)) : $trimmedToken;
-    $publicKey = trim((string) config('pagseguro.public_key'), " \t\n\r\0\x0B\"'");
-    $webhookUrl = (string) config('pagseguro.webhook_url');
-    $apiCheck = null;
-
-    if ($baseUrl !== '' && $normalizedToken !== '') {
-        try {
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $normalizedToken,
-            ])
-                ->acceptJson()
-                ->timeout(20)
-                ->withoutVerifying()
-                ->get($baseUrl . '/orders/ORDE_INVALID_AUTH_TEST');
-
-            $apiCheck = [
-                'url' => $baseUrl . '/orders/ORDE_INVALID_AUTH_TEST',
-                'status' => $response->status(),
-                'body' => $response->json(),
-                'authenticated' => in_array($response->status(), [200, 400, 404], true),
-                'interpretation' => match ($response->status()) {
-                    401 => 'Token rejeitado pelo PagSeguro para este ambiente/API.',
-                    400, 404 => 'Autenticacao aceita; o pedido de teste e invalido/inexistente.',
-                    200 => 'Autenticacao aceita, mas o pedido de teste retornou sucesso inesperado.',
-                    default => 'Resposta inesperada; verifique body/status.',
-                },
-            ];
-        } catch (\Throwable $e) {
-            $apiCheck = [
-                'url' => $baseUrl . '/orders/ORDE_INVALID_AUTH_TEST',
-                'status' => null,
-                'error' => $e->getMessage(),
-                'interpretation' => 'Falha de conexao ou erro local antes da resposta do PagSeguro.',
-            ];
-        }
-    }
-
-    return response()->json([
-        'config' => [
-            'base_url' => $baseUrl,
-            'environment_detected' => str_contains($baseUrl, 'sandbox') ? 'sandbox' : 'production',
-            'sandbox_configured' => filter_var(config('pagseguro.sandbox'), FILTER_VALIDATE_BOOLEAN),
-            'production_url_ok' => $baseUrl === 'https://api.pagseguro.com',
-        ],
-        'token' => [
-            'configured' => $configuredToken !== '',
-            'raw_length_from_config' => strlen($configuredToken),
-            'normalized_length' => strlen($normalizedToken),
-            'had_bearer_prefix_in_env' => $hadBearerPrefix,
-            'has_inner_whitespace' => preg_match('/\s/', $normalizedToken) === 1,
-            'sha256_prefix' => $normalizedToken !== '' ? substr(hash('sha256', $normalizedToken), 0, 12) : null,
-        ],
-        'public_key' => [
-            'configured' => $publicKey !== '',
-            'length' => strlen($publicKey),
-            'sha256_prefix' => $publicKey !== '' ? substr(hash('sha256', $publicKey), 0, 12) : null,
-        ],
-        'webhook' => [
-            'configured' => $webhookUrl !== '',
-            'host' => parse_url($webhookUrl, PHP_URL_HOST),
-        ],
-        'api_check' => $apiCheck,
-    ]);
-})->name('debug.pagseguro.credentials');
 
 Route::prefix('{tenant}')->group(function () {
     Route::middleware(['AuthTenant'])->group(function () {

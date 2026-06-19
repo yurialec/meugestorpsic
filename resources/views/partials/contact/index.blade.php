@@ -16,7 +16,6 @@
                         <div class="card-body p-4">
                             <h3 class="fw-semibold mb-4 text-center text-lg-start">Nosso escritório</h3>
 
-                            @if ($contact ?? null)
                                 <div class="d-flex flex-column gap-4">
                                     <div class="d-flex align-items-start">
                                         <div class="flex-shrink-0 bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center me-3"
@@ -25,7 +24,7 @@
                                         </div>
                                         <div>
                                             <h6 class="fw-semibold mb-0">Telefone</h6>
-                                            <p class="text-muted mb-0">{{ $contact->phone }}</p>
+                                            <p class="text-muted mb-0">123</p>
                                         </div>
                                     </div>
 
@@ -36,7 +35,7 @@
                                         </div>
                                         <div>
                                             <h6 class="fw-semibold mb-0">WhatsApp</h6>
-                                            <p class="text-muted mb-0">{{ $contact->phone }}</p>
+                                            <p class="text-muted mb-0">654</p>
                                             <small class="text-success">Resposta em até 1h (dias úteis)</small>
                                         </div>
                                     </div>
@@ -48,7 +47,7 @@
                                         </div>
                                         <div>
                                             <h6 class="fw-semibold mb-0">Email</h6>
-                                            <p class="text-muted mb-0">{{ $contact->email }}</p>
+                                            <p class="text-muted mb-0">email</p>
                                         </div>
                                     </div>
 
@@ -59,17 +58,13 @@
                                         </div>
                                         <div>
                                             <h6 class="fw-semibold mb-0">Endereço</h6>
-                                            <p class="text-muted mb-1">{{ $contact->address }}</p>
-                                            <p class="text-muted mb-0">{{ $contact->city }}/{{ $contact->state }} •
-                                                {{ $contact->zipcode }}</p>
+                                            <p class="text-muted mb-1">ENDERECO</p>
+                                            <p class="text-muted mb-0">CIDADE/ESTADO •
+                                                CEP</p>
                                         </div>
                                     </div>
                                 </div>
-                            @else
-                                <p class="text-muted text-center py-4">
-                                    <i class="bi bi-info-circle me-1"></i> Informações em breve.
-                                </p>
-                            @endif
+                           
                             <div class="mt-4 pt-3 border-top">
                                 <h6 class="fw-semibold mb-2">Horário de atendimento</h6>
                                 <ul class="list-unstyled text-muted small mb-0">
