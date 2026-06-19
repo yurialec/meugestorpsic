@@ -5,7 +5,6 @@ namespace App\Services\Admin;
 use App\Enums\RolesEnum;
 use App\Helpers\Utils;
 use App\Http\Traits\TraitPlan;
-use App\Models\Admin\CrmStatus;
 use App\Models\Admin\Plan;
 use App\Models\Admin\Roles;
 use App\Repositories\Admin\ClientsRepository;
@@ -43,12 +42,6 @@ class ClientsService
             'phone' => Utils::sanitizeInteger($data['phone']),
         ];
 
-        $crmStatus = CrmStatus::where('id', CrmStatus::TESTE_GRATIS)->first();
-
-        $interactionData = [
-            'status_id' => $crmStatus->id,
-        ];
-
         $plan = Plan::where('name', Plan::TESTE_GRATIS)->first();
         $now = Carbon::now();
         $endDate = $now->copy()->addDays(Plan::TRAIL);
@@ -63,7 +56,7 @@ class ClientsService
             'amount_paid'          => 0,
         ];
 
-        return $this->ClientsRepository->create($clientData, $tenantData, $subcriptionData, $interactionData);
+        return $this->ClientsRepository->create($clientData, $tenantData, $subcriptionData);
     }
 
     public function find($id)

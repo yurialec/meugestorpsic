@@ -39,6 +39,16 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('subscriptions', function (Blueprint $table) {
+            $table->dropColumn([
+                'status',
+                'pagseguro_subscription_id',
+                'started_at',
+                'current_period_start',
+                'current_period_end',
+            ]);
+        });
+
+        Schema::table('subscriptions', function (Blueprint $table) {
             $table->enum('status', ['Active', 'Expired', 'Canceled'])->default('Active');
             $table->date('start_date');
             $table->date('end_date');

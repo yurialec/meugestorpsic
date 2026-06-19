@@ -183,13 +183,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border shadow-none">
                 <div class="modal-body p-4">
-                    <h6 class="fw-semibold mb-3">Seja bem-vindo(a) ao Meu Gestor Saúde! 🎉</h6>
+                    <h6 class="fw-semibold mb-3">Seja bem-vindo(a) ao Meu Gestor Psic! 🎉</h6>
                     <p class="small text-muted mb-2">É uma alegria ter você com a gente! Agora ficou muito mais fácil
                         organizar sua agenda e seus relatórios.</p>
                     <p class="small text-muted mb-2">Qualquer dúvida, nossa equipe está por aqui para te ajudar. Em
                         breve
                         vamos te contar como ganhar um bônus indicando amigos. 😉</p>
-                    <p class="small text-muted mb-0">— Equipe Meu Gestor Saúde</p>
+                    <p class="small text-muted mb-0">— Equipe Meu Gestor Psic</p>
                 </div>
                 <div class="modal-footer border-top">
                     <button type="button" class="btn btn-sm btn-primary px-4"

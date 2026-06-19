@@ -70,11 +70,11 @@
         <div class="content">
             <p>Olá {{ $name }},</p>
             <p>Obrigado por se cadastrar! Para finalizar seu cadastro, clique no botão abaixo:</p>
-            <a href="https://meugestorsaude.com.br/faca-parte/finish-register/{{ $token }}" class="button">Finalizar
+            <a href="https://meugestorpsic.com.br/faca-parte/finish-register/{{ $token }}" class="button">Finalizar
                 Cadastro</a>
             <p>Se o botão acima não funcionar, copie e cole o link abaixo em seu navegador:</p>
             <p><a
-                    href="https://meugestorsaude.com.br/faca-parte/finish-register/{{ $token }}">https://meugestorsaude.com.br/faca-parte/finish-register/{{ $token }}</a>
+                    href="https://meugestorpsic.com.br/cadastre-se/finish-register/{{ $token }}">https://meugestorpsic.com.br/cadastrar/finish-register/{{ $token }}</a>
             </p>
         </div>
         <div class="footer">

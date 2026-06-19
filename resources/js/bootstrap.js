@@ -16,7 +16,7 @@ let base;
 if (window.location.hostname === "localhost") {
     base = "http://localhost:8000/";
 } else {
-    base = "https://meugestorsaude.com.br/";
+    base = "https://meugestorpsic.com.br/";
 }
 
 axios.defaults.baseURL = base;

@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://meugestorsaude.com.br/'),
+    'url' => env('APP_URL', 'https://meugestorpsic.com.br/'),
 
     'asset_url' => env('ASSET_URL', '/'),
 

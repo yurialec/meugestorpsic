@@ -9,9 +9,9 @@ use App\Models\Tenants\ClientConfig;
 use App\Models\Tenants\Employee;
 use App\Models\Tenants\EmployeeConfig;
 use App\Models\Tenants\Tenant;
-use Auth;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthTenantController extends Controller
 {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Admin\Crm\Client\CreateClientRequest;
 use App\Http\Traits\TraitSite;
-use App\Models\Admin\Plan;
 use App\Models\Tenants\Tenant;
 use App\Services\Admin\ClientsService;
 use Exception;
@@ -14,8 +13,6 @@ use Illuminate\Support\Facades\Log;
 
 class SiteController extends Controller
 {
-    use TraitSite;
-
     protected $clientService;
 
     public function __construct(ClientsService $clientService)
@@ -25,34 +22,25 @@ class SiteController extends Controller
 
     public function index()
     {
-        $mainText = $this->mainText();
-        $carousels = $this->carousels();
-        $contact = $this->contactSite();
-        $socialmedias = $this->socialmedias();
-        $about = $this->aboutSite();
-        $plans = $this->plans();
-        
-        return view('site', compact('mainText', 'carousels', 'contact', 'socialmedias', 'about', 'plans'));
+        return view('site');
     }
 
     public function about()
     {
-        $about = $this->aboutSite();
-        return view('partials.about.index', compact('about'));
+        return view('partials.about.index');
     }
 
     public function contact()
     {
-        $contact = $this->contactSite();
-        return view('partials.contact.index', compact('contact'));
+        return view('partials.contact.index');
     }
 
-    public function formFacaParte()
+    public function formFacaCadastro()
     {
-        return view('partials.facaParte.index');
+        return view('partials.cadastro.index');
     }
 
-    public function facaParte(CreateClientRequest $request)
+    public function cadastro(CreateClientRequest $request)
     {
         $result = $this->clientService->create($request->all());
 

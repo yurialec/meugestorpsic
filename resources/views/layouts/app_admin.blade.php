@@ -40,7 +40,7 @@
                                 <!-- Texto de Copyright -->
                                 <div class="text-muted">
                                     Copyright &copy; {{ date('Y') }}
-                                    <a href="https://meugestorsaude.com.br " target="_blank"
+                                    <a href="https://meugestorpsic.com.br " target="_blank"
                                         class="text-dark text-decoration-none fw-bold">
                                         Meu Gestor Saúde
                                     </a>. Todos os direitos reservados.

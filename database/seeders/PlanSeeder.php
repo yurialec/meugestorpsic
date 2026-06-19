@@ -18,21 +18,24 @@ class PlanSeeder extends Seeder
             'name' => 'Teste Grátis',
             'price' => 0.00,
             'description' => 'Teste Grátis por 10 dias',
-            'duration' => 10,
+            'billing_cycle' => 'monthly',
+            'payment_gateway_plan_code' => null,
         ]);
 
         Plan::create([
             'name' => 'Mensal',
             'price' => 29.90,
             'description' => 'Plano Mensal',
-            'duration' => 30,
+            'billing_cycle' => 'monthly',
+            'payment_gateway_plan_code' => null,
         ]);
 
         Plan::create([
             'name' => 'Anual',
             'price' => 319.90,
             'description' => 'Plano Anual',
-            'duration' => 365,
+            'billing_cycle' => 'annual',
+            'payment_gateway_plan_code' => null,
         ]);
     }
 }

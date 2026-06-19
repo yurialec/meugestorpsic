@@ -10,28 +10,30 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('tenant_financial_transactions', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('tenant_id');
-            $table->foreign('tenant_id')->references('id')->on('tenant')->onDelete('cascade');
-            
-            $table->uuid('patient_id');
-            $table->foreign('patient_id')->references('id')->on('')->onDelete('cascade');
-            
-            $table->unsignedBigInteger('consultation_id')->nullable();
-            $table->foreign('consultation_id')->references('id')->on('consultations')->onDelete('cascade');
-            
-            $table->unsignedBigInteger('payment_method_id')->nullable();
-            $table->foreign('payment_method_id')->references('id')->on('payment_method')->onDelete('cascade');
-            
-            $table->decimal('amount', 10, 2);
+        if (!Schema::hasTable('tenant_financial_transactions')) {
+            Schema::create('tenant_financial_transactions', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('tenant_id');
+                $table->foreign('tenant_id')->references('id')->on('tenant')->onDelete('cascade');
 
-            $table->enum('status', ['pending', 'paid', 'cancelled', 'free'])->default('pending');
-            $table->timestamp('paid_at')->nullable();
+                $table->uuid('patient_id');
+                $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
 
-            $table->string('description')->nullable();
-            $table->timestamps();
-        });
+                $table->unsignedBigInteger('consultation_id')->nullable();
+                $table->foreign('consultation_id')->references('id')->on('consultations')->onDelete('cascade');
+
+                $table->unsignedBigInteger('payment_method_id')->nullable();
+                $table->foreign('payment_method_id')->references('id')->on('payment_method')->onDelete('cascade');
+
+                $table->decimal('amount', 10, 2);
+
+                $table->enum('status', ['pending', 'paid', 'cancelled', 'free'])->default('pending');
+                $table->timestamp('paid_at')->nullable();
+
+                $table->string('description')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
