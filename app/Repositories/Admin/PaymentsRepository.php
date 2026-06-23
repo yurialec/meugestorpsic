@@ -2,10 +2,9 @@
 
 namespace App\Repositories\Admin;
 
-use App\Interfaces\Admin\PaymentsRepositoryInterface;
 use App\Models\Admin\Payment;
 
-class PaymentsRepository implements PaymentsRepositoryInterface
+class PaymentsRepository
 {
     public function all()
     {
