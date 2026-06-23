@@ -3,7 +3,6 @@
 namespace App\Repositories\Tenants;
 
 use App\Http\Traits\TraitPlan;
-use App\Interfaces\Tenants\SubscriptionRepositoryInterface;
 use App\Models\Admin\Payment;
 use App\Models\Admin\Plan;
 use App\Models\Tenants\PlanFeature;
@@ -14,7 +13,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class SubscriptionRepository implements SubscriptionRepositoryInterface
+class SubscriptionRepository
 {
     protected $tenant;
     protected $subscription;
