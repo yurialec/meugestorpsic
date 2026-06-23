@@ -2,12 +2,11 @@
 
 namespace App\Repositories\Admin;
 
-use App\Interfaces\Admin\SubscriptionRepositoryInterface;
 use App\Models\Admin\Subscription;
 use Exception;
 use Log;
 
-class SubscriptionRepository implements SubscriptionRepositoryInterface
+class SubscriptionRepository
 {
     protected $subscription;
 
