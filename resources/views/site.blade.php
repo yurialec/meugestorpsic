@@ -8,7 +8,7 @@
         <span class="hero-badge-dot"></span>
         Feito para psicólogos recém-formados
       </div>
-      <h1>Organize sua clínica<br><em>desde o primeiro</em><br><strong>paciente.</strong></h1>
+      <h1>Organize sua clínica TESTE<br><em>desde o primeiro</em><br><strong>paciente.</strong></h1>
       <p class="hero-sub">Sistema simples e seguro para psicólogos(as) iniciantes cuidarem de pacientes, prontuários e financeiro em um só lugar.</p>
       <div class="hero-btns">
         <a href="{{route('form.cadastro')}}" class="btn-hero-primary">Testar grátis por 10 dias</a>

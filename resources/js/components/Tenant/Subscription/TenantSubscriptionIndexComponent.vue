@@ -66,7 +66,9 @@
 
           <div v-else>
             <small>
-              <span class="text-muted">Nenhum pagamento registrado.</span>
+              <span class="text-muted">
+                Nenhum pagamento registrado.
+              </span>
             </small>
           </div>
         </div>
